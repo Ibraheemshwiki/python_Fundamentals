@@ -1,0 +1,30 @@
+Microsoft Windows [Version 10.0.19042.928]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Ibraheem>cd C:\Users\Ibraheem\Desktop\python_stack\_python\python _fundamentals
+
+C:\Users\Ibraheem\Desktop\python_stack\_python\python _fundamentals>hello_world.py
+hello world!
+
+C:\Users\Ibraheem\Desktop\python_stack\_python\python _fundamentals>python
+Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> hello_world.py
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'hello_world' is not defined
+>>> hello_world.py
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'hello_world' is not defined
+>>> print("hello world")
+hello world
+>>> name = "Noelle"
+>>> print("Hello","Noelle!")
+Hello Noelle!
+>>> print("Hello" + name)
+HelloNoelle
+>>> fave_food1 = "sushi"
+>>> fave_food2 = "pizza"
+>>> print("I love to eat {} and {}".format(fave_food1, fave_food2))
+I love to eat sushi and pizza
