@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        h1 {
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        h3 {
+            color: brown;
+            text-align: center;
+        }
+        
+        .visit {
+            background-color: rgb(67, 141, 67);
+            width: 100px;
+            height: 40px;
+            margin-left: 450px;
+        }
+        
+        .boom {
+            background-color: rgb(187, 32, 32);
+            width: 100px;
+            height: 40px;
+            margin-left: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Counter</h1>
+
+    <h3>{{visits}} {{words}} </h3>
+    <form action="/add">
+        <input type="submit" class="visit" value="+2 Visits">
+    </form>
+    <form action="/destroy">
+        <input type="submit" class="boom" value="Boom">
+    </form>
+</body>
+
+</html>
