@@ -12,7 +12,7 @@ def hello_dojo():
 def hello_flask():
     return 'Hi Flask!' 
     
-@app.route('/say/michael<name1>')       
+@app.route('/say/<name1>')       
 def hello_name(name1):
     return f'Hi {name1}' 
 
