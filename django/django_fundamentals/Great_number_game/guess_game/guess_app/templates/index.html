@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guess</title>
+    <style>
+        .red {
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .green {
+            width: 300px;
+            height: 100px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game</h1><br><br>
+    <h4>I'm thinking of a number from 1 to 100</h4><br>
+    <h4>Take a guess</h4>
+    {% if variable == "low" %}
+    <div class="red">
+        <h1>Its Low</h1>
+    </div>
+    {% endif %} {% if variable == "high" %}
+    <div class="red">
+        <h1>Its High</h1>
+    </div>
+    {% endif %} {% if variable == "win" %}
+    <div class="green">
+        <h1>You Won, the number was {{the_num}}</h1>
+    </div>
+    {% endif %}
+    <form method="POST" action="/try">
+        {% csrf_token %}
+        <input type="number" name="the_guess"><br>
+        <input type="submit" value="Check">
+    </form>
+    <br>
+    <h5>Attemps {{counter}}</h5>
+</body>
+
+</html>
