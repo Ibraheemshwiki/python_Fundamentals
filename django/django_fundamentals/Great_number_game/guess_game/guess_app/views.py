@@ -2,7 +2,8 @@ from django.shortcuts import render
 import random
 
 def index(request):
-    del request.session['counter']
+    if 'counter' in request.session:
+        del request.session['counter']
     result = int(random.randint(1, 100))
     request.session['resultF'] = result
     return render(request, 'index.html')
