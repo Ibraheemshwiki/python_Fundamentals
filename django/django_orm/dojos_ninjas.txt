@@ -1,0 +1,137 @@
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py makemigrations dojos_ninjas_app
+Migrations for 'dojos_ninjas_app':
+  dojos_ninjas_app\migrations\0001_initial.py
+    - Create model dojo
+    - Create model ninja
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojos_ninjas_app, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying dojos_ninjas_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py shell
+Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojos_ninjas_app.models import *
+>>> dojo.objects.create(name='first dojo', city= 'ramallah', state='usa')
+<dojo: dojo object (1)>
+>>> dojo.objects.create(name='first dojo', city= '', state='usa')
+<dojo: dojo object (2)>
+>>>
+>>>
+>>> c = dojo.objects.get(id=2)
+>>> c.name='second dojo'
+>>> c.city='newyork'
+>>> c.name
+'second dojo'
+>>> c.city
+'newyork'
+>>> dojo.objects.create(name='third dojo', city= 'Las Vegas', state='usa')
+<dojo: dojo object (3)>
+>>> c = dojo.objects.get(id=1)
+>>> c.delete()
+(1, {'dojos_ninjas_app.ninja': 0, 'dojos_ninjas_app.dojo': 1})
+>>> c = dojo.objects.get(id=2)
+>>> c.delete()
+(1, {'dojos_ninjas_app.ninja': 0, 'dojos_ninjas_app.dojo': 1})
+>>> c = dojo.objects.get(id=3)
+>>> c.delete()
+(1, {'dojos_ninjas_app.ninja': 0, 'dojos_ninjas_app.dojo': 1})
+>>> dojo.objects.create(name='first dojo', city= 'Las Vegas', state='usa')
+<dojo: dojo object (4)>
+>>> dojo.objects.create(name='second dojo', city= 'New York', state='usa')
+<dojo: dojo object (5)>
+>>> dojo.objects.create(name='third dojo', city= 'Nevada', state='usa')
+<dojo: dojo object (6)>
+>>> first_dojo=dojo.objects.get(id=4)
+>>> ninja.objects.create(first_name = 'Omar', last_name='Daqah', dojo='first_dojo')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Ibraheem\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Ibraheem\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 420, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Ibraheem\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\base.py", line 483, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\Ibraheem\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\fields\related_descriptors.py", line 206, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'first_dojo'": "ninja.dojo" must be a "dojo" instance.
+>>> ninja.objects.create(first_name = 'Omar', last_name='Daqah', dojo=first_dojo)
+<ninja: ninja object (1)>
+>>> ninja.objects.create(first_name = 'Naruto', last_name='Uzumaki', dojo=first_dojo)
+<ninja: ninja object (2)>
+>>> ninja.objects.create(first_name = 'Sasuke', last_name='Uchiha', dojo=first_dojo)
+<ninja: ninja object (3)>
+>>> second_dojo=dojo.objects.get(id=5)
+>>> ninja.objects.create(first_name = 'Mustafa', last_name='Musleh', dojo=second_dojo)
+<ninja: ninja object (4)>
+>>> ninja.objects.create(first_name = 'Ibraheem', last_name='Shweiki', dojo=second_dojo)
+<ninja: ninja object (5)>
+>>> ninja.objects.create(first_name = 'Yazan', last_name='Salameh', dojo=second_dojo)
+<ninja: ninja object (6)>
+>>> third_dojo=dojo.objects.get(id=6)
+>>> ninja.objects.create(first_name = 'Saitama', last_name='Sensei', dojo=third_dojo)
+<ninja: ninja object (7)>
+>>> ninja.objects.create(first_name = 'Genos', last_name='Sensei', dojo=third_dojo)
+<ninja: ninja object (8)>
+>>> ninja.objects.create(first_name = 'Monkey D.', last_name='Luffy', dojo=third_dojo)
+<ninja: ninja object (9)>
+>>> for ninjas in first_dojo.ninjas.all():
+...     print(ninjas.first_name)
+...
+Omar
+Naruto
+Sasuke
+>>> for ninjas in third_dojo.ninjas.all():
+...     print(ninjas.first_name)
+...
+Saitama
+Genos
+Monkey D.
+>>> ninja.objects.last().dojo.name
+'third dojo'
+>>> exit()
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py makemigrations
+Migrations for 'dojos_ninjas_app':
+  dojos_ninjas_app\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojos_ninjas_app, sessions
+Running migrations:
+  Applying dojos_ninjas_app.0002_dojo_desc... OK
+
+(djangoPy3Env) C:\Users\Ibraheem\Desktop\python_stack\django\django_fundamentals\Dojos_and_Ninjas>python manage.py shell
+Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> dojo.objects.create(name="fourth dojo", city="ramallh", state="usa", desc="new dojo")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'dojo' is not defined
+>>> from dojos_ninjas_app.models import *
+>>> dojo.objects.create(name="fourth dojo", city="ramallh", state="usa", desc="new dojo")
+<dojo: dojo object (7)>
+>>>
