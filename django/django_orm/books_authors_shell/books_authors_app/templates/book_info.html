@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Info</title>
+    <style>
+        * {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{this_book.title}}</h1><br><br>
+    <h3>ID: {{this_book.id}}</h3><br><br>
+    <textarea>Description{{this_book.notes}}</textarea>
+    <h4>Authors: </h4>
+    <ul>
+        {% for author in assoc_authors %}
+        <li>{{author.first_name}}{{author.last_name}}</li>
+        {% endfor %}
+    </ul>
+    <br><br>
+    <form action='/authortobook/{{this_book.id}}' method="POST">
+        {% csrf_token %}
+        <select name="select_author">
+        {% for author in not_assoc_authors %}
+        <option value="{{author.id}}">{{author.first_name}}{{author.last_name}}</option>
+        {% endfor %}
+        </select>
+        <button type="submit">Add</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 40%;
+        }
+        
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+
+        <div>
+            <h1>Add an Author</h1>
+            <form action="/addauthor" method="POST">
+                {% csrf_token %}
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+                <br><br>
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname">
+                <br><br>
+                <label for="note">Description</label><br>
+                <textarea name="note"></textarea>
+                <br><br>
+                <button type="submit">Add</button>
+
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                {% for author in authors %}
+                <tr>
+                    <td>{{author.id}}</td>
+                    <td>{{author.first_name}}_{{author.last_name}}</td>
+                    <td><a href="/author_info/{{author.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </header>
+</body>
+
+</html>
