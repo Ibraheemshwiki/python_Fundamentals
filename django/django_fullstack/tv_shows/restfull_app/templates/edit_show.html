@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+
+<body>
+    <a href="/show">Go back </a>
+    <h1>Edit Show {{get_show.id}}</h1>
+    <form action="/{{get_show.id}}/edit" method="POST">
+        {% csrf_token %}
+        <p>Title</p>
+        <input type="text" name="title" value="{{get_show.title}}">
+        <p>Network</p>
+        <input type="text" name="network" value="{{get_show.network}}">
+        <p>Release Date</p>
+        <input type="date" name="date" value="{{get_show.release_date|date:'Y-m-d'}}">
+        <textarea name="desc" cols="30" rows="10" value="{{get_show.description}}"></textarea>
+        <input type="submit" value="Update">
+        <a href="/show/{{get_show.id}}">Go back </a>
+    </form>
+</body>
+
+</html>

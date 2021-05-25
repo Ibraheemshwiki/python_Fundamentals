@@ -14,4 +14,6 @@ def user_info(request):
         "language_temp" : language_from_form,
         "comments_temp" : comments_from_form,
     }
-    return  render(request,"result.html",context)
+    return  redirect('/bring_it')
+def bring_it(request):
+    return render(request, 'result.html')
